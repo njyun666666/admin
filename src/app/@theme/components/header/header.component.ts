@@ -119,7 +119,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
 
-    this.menuService.onItemHover().subscribe(() => {
+    this.menuService.onItemHover().subscribe((menu) => {
+      // console.log(menu);
       this.sidebarService.expand('menu-sidebar');
     });
 
