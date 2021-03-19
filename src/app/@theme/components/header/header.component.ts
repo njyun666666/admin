@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { StateService } from './../../../@core/utils/state.service';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
@@ -17,10 +18,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   public readonly materialTheme$: Observable<boolean>;
   userPictureOnly: boolean = false;
-  hideMenuOnClick: boolean = false;
-  userSettingSidebarCompacted: boolean = false;
-  isXl: boolean = false;
-  currentWidth: number;
+  sidebarEl: ElementRef;
+  // hideMenuOnClick: boolean = false;
+  // userSettingSidebarCompacted: boolean = false;
+  // isXl: boolean = false;
+  // currentWidth: number;
 
   user: any;
 
@@ -63,6 +65,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
+    private stateService: StateService,
+    private el: ElementRef
   ) {
     this.materialTheme$ = this.themeService.onThemeChange()
       .pipe(map(theme => {
@@ -80,7 +84,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((users: any) => this.user = users.nick);
 
     const { xl } = this.breakpointService.getBreakpointsMap();
-    const { is } = this.breakpointService.getBreakpointsMap();
+    // const { is } = this.breakpointService.getBreakpointsMap();
 
 
     this.themeService.onMediaQueryChange()
@@ -89,40 +93,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(currentBreakpoint => {
-        this.currentWidth = currentBreakpoint.width;
+        // this.currentWidth = currentBreakpoint.width;
         this.userPictureOnly = currentBreakpoint.width < xl;
-        this.hideMenuOnClick = currentBreakpoint.width <= is;
-        this.isXl = currentBreakpoint.width >= xl;
+        // this.hideMenuOnClick = currentBreakpoint.width <= is;
 
-        // console.log('this.isXl=', this.isXl);
-        // console.log('this.userSettingSidebarCompacted=', this.userSettingSidebarCompacted);
-        // console.log('currentBreakpoint.width=', currentBreakpoint.width);
+        if (currentBreakpoint.width < xl) {
 
-
+        }
+        // sideBarCompactedSetting
 
       });
 
 
-    this.menuService.onItemClick().subscribe(() => {
-      if (this.hideMenuOnClick) {
+    // this.menuService.onItemClick().subscribe(() => {
+    //   if (this.hideMenuOnClick) {
 
-        this.sidebarService.collapse('menu-sidebar');
+    //     this.sidebarService.collapse('menu-sidebar');
 
-      } else if (!this.isXl || this.userSettingSidebarCompacted) {
+    //   }
 
-        this.sidebarService.toggle(true, 'menu-sidebar');
-
-      }
+    // });
 
 
-    });
-
-
-
-    this.menuService.onItemHover().subscribe((menu) => {
-      // console.log(menu);
-      this.sidebarService.expand('menu-sidebar');
-    });
 
 
 
@@ -153,12 +145,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.sidebarService.toggle(true, 'menu-sidebar');
     this.layoutService.changeLayoutSize();
 
-    if (this.isXl) {
-      this.userSettingSidebarCompacted = !this.userSettingSidebarCompacted;
-      console.log('toggleSidebar, this.isXl=' + this.isXl + ' , this.userSettingSidebarCompacted=' + this.userSettingSidebarCompacted);
-    }
+    // // this.sidebarEl = this.el.nativeElement.querySelector('nb-sidebar[tag=menu-sidebar]');
+    // // this.stateService.sideBarCompactedSetting = this.stateService.sidebarEl['classList'].contains('compacted');
+    // var a = this.stateService.sidebarEl['classList'];
 
-    // this.userSettingSidebarCompacted = this.widthSidebarExpaned ? true : false;
+    // console.log(a);
+    // console.log('from hearder', a.contains('compacted'));
+    // console.log(this.sidebarEl['classList'].contains('compacted'));
+
+
+    // sideBarCompactedSetting
 
     return false;
   }
