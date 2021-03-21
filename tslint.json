@@ -70,7 +70,10 @@
       "check-whitespace"
     ],
     "prefer-const": true,
-    "quotemark": false,
+    "quotemark": [
+      false,
+      "single"
+    ],
     "radix": true,
     "semicolon": [
       true,
