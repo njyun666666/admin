@@ -13,7 +13,7 @@ import { ThemeModule } from '../../@theme/theme.module';
     CommonModule,
     ThemeModule,
     NbCardModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
   ]
 })
 export class DashboardModule { }
