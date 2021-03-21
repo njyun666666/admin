@@ -45,10 +45,6 @@ export class StateService implements OnDestroy {
 
   alive = true;
 
-  sideBarCompactedSetting: string;
-  sidebarEl: ElementRef;
-
-
   constructor(directionService: NbLayoutDirectionService) {
     directionService.onDirectionChange()
       .pipe(takeWhile(() => this.alive))

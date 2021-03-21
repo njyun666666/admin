@@ -19,12 +19,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public readonly materialTheme$: Observable<boolean>;
   userPictureOnly: boolean = false;
   sidebarEl: ElementRef;
-  // hideMenuOnClick: boolean = false;
-  // userSettingSidebarCompacted: boolean = false;
-  // isXl: boolean = false;
-  // currentWidth: number;
-
   user: any;
+  isMobile: boolean = false;
 
   themes = [
     {
@@ -65,8 +61,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
-    private stateService: StateService,
-    private el: ElementRef
   ) {
     this.materialTheme$ = this.themeService.onThemeChange()
       .pipe(map(theme => {
@@ -83,8 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => this.user = users.nick);
 
-    const { xl } = this.breakpointService.getBreakpointsMap();
-    // const { is } = this.breakpointService.getBreakpointsMap();
+    const { is, xl } = this.breakpointService.getBreakpointsMap();
 
 
     this.themeService.onMediaQueryChange()
@@ -93,27 +86,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(currentBreakpoint => {
-        // this.currentWidth = currentBreakpoint.width;
         this.userPictureOnly = currentBreakpoint.width < xl;
-        // this.hideMenuOnClick = currentBreakpoint.width <= is;
-
-        if (currentBreakpoint.width < xl) {
-
-        }
-        // sideBarCompactedSetting
-
+        this.isMobile = currentBreakpoint.width <= is;
       });
-
-
-    // this.menuService.onItemClick().subscribe(() => {
-    //   if (this.hideMenuOnClick) {
-
-    //     this.sidebarService.collapse('menu-sidebar');
-
-    //   }
-
-    // });
-
 
 
 
@@ -144,17 +119,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
     this.layoutService.changeLayoutSize();
-
-    // // this.sidebarEl = this.el.nativeElement.querySelector('nb-sidebar[tag=menu-sidebar]');
-    // // this.stateService.sideBarCompactedSetting = this.stateService.sidebarEl['classList'].contains('compacted');
-    // var a = this.stateService.sidebarEl['classList'];
-
-    // console.log(a);
-    // console.log('from hearder', a.contains('compacted'));
-    // console.log(this.sidebarEl['classList'].contains('compacted'));
-
-
-    // sideBarCompactedSetting
 
     return false;
   }

@@ -1,9 +1,6 @@
-import { Component, ViewChildren, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuComponent, NbMenuService, NbSidebarComponent, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { Component, OnInit, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 import { map } from 'rxjs/operators';
-import { StateService } from '../@core/utils';
-import { OneColumnLayoutComponent } from '../@theme/layouts';
-
 import { MENU_ITEMS } from './pages-menu';
 
 @Component({
@@ -19,12 +16,15 @@ import { MENU_ITEMS } from './pages-menu';
 export class PagesComponent implements OnInit, AfterViewInit {
 
   sidebarEl: ElementRef;
+  contentEl: ElementRef;
   isXl: boolean = false;
   hideMenuOnClick: boolean = false;
   sidebarStatus: string;
+  listenEnable: boolean = false;
 
   listenSidebarMouseEnter: () => void;
   listenSidebarMouseLeave: () => void;
+  listenContentClick: () => void;
 
 
   menu = MENU_ITEMS;
@@ -36,7 +36,6 @@ export class PagesComponent implements OnInit, AfterViewInit {
     private themeService: NbThemeService,
     private menuService: NbMenuService,
     private breakpointService: NbMediaBreakpointsService,
-    private stateService: StateService,
   ) {
 
   }
@@ -44,57 +43,50 @@ export class PagesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    // const { xl } = this.breakpointService.getBreakpointsMap();
-
-
-
   }
 
 
   ngAfterViewInit(): void {
 
 
-    // //
-    // this.sidebarEl = this.el.nativeElement.querySelector('nb-sidebar[tag=menu-sidebar]');
-    this.stateService.sidebarEl = this.el.nativeElement.querySelector('nb-sidebar[tag=menu-sidebar]');
-    // this.sidebarStatus = this.sidebarEl.nativeElement.classList.contains('compacted');
-    console.log('from pages',this.stateService.sidebarEl['classList'].contains('compacted'));
-    // console.dir(this.el.;
-    // this.sidebarEl.
-    // console.log(this.sidebarEl.classList.contains('compacted'));
+    this.sidebarEl = this.el.nativeElement.querySelector('nb-sidebar[tag=menu-sidebar]');
+    this.contentEl = this.el.nativeElement.querySelector('.layout>.layout-container>.content');
+    // console.log(this.el.nativeElement);
+    // console.log(this.contentEl);
 
     this.listenSidebar();
 
 
-    // this.sidebarService.getSidebarState('menu-sidebar').subscribe((si) => {
-    //   console.log(si);
-    // });
+    const { is } = this.breakpointService.getBreakpointsMap();
 
-
-
-    const { xl, is } = this.breakpointService.getBreakpointsMap();
-
+    // console.log('getBreakpoints',this.breakpointService.getBreakpoints());
 
     this.themeService.onMediaQueryChange()
       .pipe(
         map(([, currentBreakpoint]) => currentBreakpoint),
       )
       .subscribe(currentBreakpoint => {
-        // this.currentWidth = currentBreakpoint.width;
-
-        // if (currentBreakpoint.width >= xl) {
-        //   this.sidebarService.collapse('menu-sidebar');
-        // }
 
 
-        this.isXl = currentBreakpoint.width >= xl;
         this.hideMenuOnClick = currentBreakpoint.width <= is;
 
         if (this.hideMenuOnClick) {
           this.unlistenSidebar();
+
+
+          try {
+            this.unlistenContent();
+          } catch (error) { }
+          // this.listenContent();
+
         } else {
           this.unlistenSidebar();
           this.listenSidebar();
+
+          try {
+            this.unlistenContent();
+          } catch (error) { }
+
         }
 
 
@@ -102,13 +94,41 @@ export class PagesComponent implements OnInit, AfterViewInit {
       });
 
 
+    // this.sidebarService.onExpand().subscribe((side) => {
+    //   // this.listenContent();
+    //   console.log('this.sidebarService.onExpand', side);
+    // });
+
+    this.sidebarService.onCollapse().subscribe((side) => {
+      this.unlistenContent();
+    });
+
+    // this.sidebarService.onCompact().subscribe((side) => {
+    //   // this.listenContent();
+    //   console.log('this.sidebarService.onCompact', side);
+    // });
+
+    this.sidebarService.onToggle().subscribe((side) => {
+
+      // console.log('this.sidebarService.onToggle', side);
+
+      this.unlistenContent();
+
+      if (this.hideMenuOnClick) {
+        // console.log('this.sidebarService.onToggle', 'if');
+
+        this.listenContent();
+      }
+      // this.unlistenContent();
+    });
+
+
+
     this.menuService.onItemClick().subscribe(() => {
       if (this.hideMenuOnClick) {
-
         this.sidebarService.collapse('menu-sidebar');
-
       }
-
+      this.unlistenContent();
     });
 
 
@@ -118,13 +138,12 @@ export class PagesComponent implements OnInit, AfterViewInit {
 
   listenSidebar(): void {
 
-    this.listenSidebarMouseEnter = this.render.listen(this.stateService.sidebarEl, 'mouseenter', (event) => {
+    this.listenSidebarMouseEnter = this.render.listen(this.sidebarEl, 'mouseenter', (event) => {
       this.sidebarService.expand('menu-sidebar');
-      this.stateService.sideBarCompactedSetting = this.stateService.sidebarEl['classList'].contains('compacted');
-      console.log('compacted', this.stateService.sidebarEl['classList'].contains('compacted'));
+      // this.stateService.sideBarCompactedSetting = this.sidebarEl['classList'].contains('compacted');
     });
 
-    this.listenSidebarMouseLeave = this.render.listen(this.stateService.sidebarEl, 'mouseleave', (event) => {
+    this.listenSidebarMouseLeave = this.render.listen(this.sidebarEl, 'mouseleave', (event) => {
       this.sidebarService.toggle(true, 'menu-sidebar');
     });
 
@@ -133,12 +152,39 @@ export class PagesComponent implements OnInit, AfterViewInit {
 
 
   unlistenSidebar(): void {
+    try {
+      this.listenSidebarMouseEnter();
+      this.listenSidebarMouseLeave();
+    } catch (error) { }
+  }
 
-    this.listenSidebarMouseEnter();
-    this.listenSidebarMouseLeave();
+
+  listenContent(): void {
+
+    this.listenContentClick = this.render.listen(this.contentEl, 'click', (event) => {
+      // this.sidebarService.collapse('menu-sidebar');
+
+      if (this.listenEnable) {
+        // console.log('this.listenContentClick');
+        this.sidebarService.toggle(true, 'menu-sidebar');
+        this.unlistenContent();
+      }
+
+      this.listenEnable = true;
+    });
+
 
   }
 
+
+  unlistenContent(): void {
+    this.listenEnable = false;
+    try {
+      this.listenContentClick();
+    } catch (error) { }
+
+    // console.log('this.listenContentClick - un');
+  }
 
 
 }
