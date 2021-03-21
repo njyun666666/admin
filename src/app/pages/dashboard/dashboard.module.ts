@@ -14,6 +14,6 @@ import { ThemeModule } from '../../@theme/theme.module';
     ThemeModule,
     NbCardModule,
     DashboardRoutingModule,
-  ]
+  ],
 })
 export class DashboardModule { }
