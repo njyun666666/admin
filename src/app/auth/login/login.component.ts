@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
-// import { UserService } from '../../@core/services/user.service';
+import { AccountService } from '../../@core/services/account.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -14,18 +15,29 @@ export class LoginComponent implements OnInit {
   loggedIn: boolean;
 
 
-  constructor(private socialAuthService: SocialAuthService) { }
+  constructor(
+    private socialAuthService: SocialAuthService,
+    private accountService: AccountService,
+    private cookieService: CookieService
+  ) { }
 
 
   ngOnInit(): void {
-    console.log('login coponent');
+
+
+
 
     this.socialAuthService.authState.subscribe((user) => {
+      this.accountService.user = user;
       this.user = user;
 
-      // this.userService.user = user;
+      this.cookieService.set('googleState', JSON.stringify(user));
+      // console.log('login coponent',this.accountService.user);
+      // console.log('login coponent',user);
 
-      console.log(user);
+      // this.user = user;
+      // console.log('this.accountService.user', this.accountService.user);
+      // console.log(this.userService.getUser());
     });
   }
 
@@ -33,8 +45,6 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  signOut(): void {
-    this.socialAuthService.signOut();
-  }
+
 
 }

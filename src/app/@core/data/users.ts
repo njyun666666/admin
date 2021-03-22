@@ -1,3 +1,4 @@
+import { SocialUser } from 'angularx-social-login';
 import { Observable } from 'rxjs';
 
 export interface User {
@@ -15,6 +16,8 @@ export interface RecentUsers extends Contacts {
 }
 
 export abstract class UserData {
+  abstract getUser(): Observable<SocialUser>;
+  abstract setUser(user: SocialUser);
   abstract getUsers(): Observable<User[]>;
   abstract getContacts(): Observable<Contacts[]>;
   abstract getRecentUsers(): Observable<RecentUsers[]>;

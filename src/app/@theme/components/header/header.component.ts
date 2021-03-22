@@ -1,3 +1,4 @@
+import { SocialUser } from 'angularx-social-login';
 import { StateService } from './../../../@core/utils/state.service';
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
@@ -7,6 +8,7 @@ import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { RippleService } from '../../../@core/utils/ripple.service';
+import { AccountService } from '../../../@core/services/account.service';
 
 @Component({
   selector: 'ngx-header',
@@ -19,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public readonly materialTheme$: Observable<boolean>;
   userPictureOnly: boolean = false;
   sidebarEl: ElementRef;
-  user: any;
+  user: SocialUser;
   isMobile: boolean = false;
 
   themes = [
@@ -51,7 +53,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  // userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{ title: 'Log out', link: '/auth/logout' }];
 
   public constructor(
     private sidebarService: NbSidebarService,
@@ -61,6 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
+    private accountService: AccountService
   ) {
     this.materialTheme$ = this.themeService.onThemeChange()
       .pipe(map(theme => {
@@ -73,9 +77,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
 
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
+
+    // this.user = this.userService.getUser();
+    // console.log('hearder', this.user);
+
+    this.user = this.accountService.user;
+    // console.log(this.user);
+    // this.userService.getUsers()
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((users: any) => {
+    //     this.user = this.userService.getUser();
+    //     console.log('this.user', this.userService.getUser);
+    //   });
 
     const { is, xl } = this.breakpointService.getBreakpointsMap();
 
