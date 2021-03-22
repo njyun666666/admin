@@ -5,6 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { ThemeModule } from '../@theme/theme.module';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { ThemeModule } from '../@theme/theme.module';
     CommonModule,
     AuthRoutingModule,
     ThemeModule
-  ]
+  ],
+
 })
 export class AuthModule { }
