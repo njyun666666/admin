@@ -6,13 +6,7 @@
     "deprecation": {
       "severity": "warning"
     },
-    "trailing-comma": [
-      true,
-      {
-        "multiline": "always",
-        "singleline": "never"
-      }
-    ],
+    "trailing-comma": false,
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
