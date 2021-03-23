@@ -9,6 +9,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { RippleService } from '../../../@core/utils/ripple.service';
 import { AccountService } from '../../../@core/services/account.service';
+import { AuthService } from '../../../@core/services/auth.service';
 
 @Component({
   selector: 'ngx-header',
@@ -64,7 +65,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private authService: AuthService,
   ) {
     this.materialTheme$ = this.themeService.onThemeChange()
       .pipe(map(theme => {
@@ -81,7 +83,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // this.user = this.userService.getUser();
     // console.log('hearder', this.user);
 
-    this.user = this.accountService.user;
+    // this.accountService.getUser()
+    // .subscribe((user) = {
+    //   console.log(user);
+    // });
+
+
+
+    // this.user = this.accountService.user;
+
+    this.user = this.authService.getTokenCookie();
+
     // console.log(this.user);
     // this.userService.getUsers()
     //   .pipe(takeUntil(this.destroy$))

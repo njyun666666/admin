@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthGuard implements CanActivate, CanActivateChild {
 
   constructor(
+    private router: Router,
     private authService: AuthService
   ) { }
 
@@ -40,7 +41,13 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     // console.log(state);
 
 
-    console.log('checkLogin', this.authService.checkLogin());
+    console.log('checkTokenCookie', this.authService.checkTokenCookie());
+
+    if (!this.authService.checkTokenCookie()) {
+      this.router.navigate(['/auth/login']);
+
+      return false;
+    }
 
 
     const url = state.url.split('?')[0];
@@ -50,7 +57,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     // return this.authService.authcheck(url, queryParams);
     console.log('doCanActivate url=' + url, queryParams);
 
-    return true;
+
+    return this.authService.authcheck(url, queryParams);
   }
 
 
