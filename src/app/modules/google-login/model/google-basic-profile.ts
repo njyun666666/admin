@@ -8,4 +8,5 @@ export class GoogleBasicProfile {
     access_token: string;
     id_token: string;
     authorizationCode: string;
+    expires_at: number;
 }

@@ -1,5 +1,5 @@
 import { GoogleSignInOptions } from './model/google-sign-in-options';
-import { Injectable, NgZone } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { GoogleBasicProfile } from "./model/google-basic-profile";
 
 
@@ -13,7 +13,7 @@ export class GoogleAuthService {
   public googleUser = new GoogleBasicProfile(); // The current user.
 
 
-  constructor(private zone: NgZone) {
+  constructor() {
 
     // console.log('--------------- GoogleAuthService constructor');
 
@@ -92,10 +92,20 @@ export class GoogleAuthService {
         // console.log(this.auth2.isSignedIn);
         // console.log('5 ----- isSignedIn -- ', this.auth2.isSignedIn.get());
 
+        // this.refreshAuthToken();
 
         if (this.auth2.isSignedIn.get()) {
 
+
+          console.log('-------------- isSignedIn ------------', this.auth2.isSignedIn.get());
+
           this.setUserProfile();
+
+
+
+
+
+
           resolve(true);
 
         } else {
@@ -123,8 +133,7 @@ export class GoogleAuthService {
     const user = new GoogleBasicProfile();
 
     const profile = this.auth2.currentUser.get().getBasicProfile();
-    const access_token = this.auth2.currentUser.get().getAuthResponse(true).access_token;
-    const id_token = this.auth2.currentUser.get().getAuthResponse(true).id_token;
+    const authResponse = this.auth2.currentUser.get().getAuthResponse(true);
 
     user.id = profile.getId();
     user.name = profile.getName();
@@ -132,8 +141,10 @@ export class GoogleAuthService {
     user.imageUrl = profile.getImageUrl();
     user.givenName = profile.getGivenName();
     user.familyName = profile.getFamilyName();
-    user.access_token = access_token;
-    user.id_token = id_token;
+
+    user.access_token = authResponse.access_token;
+    user.id_token = authResponse.id_token;
+    user.expires_at = authResponse.expires_at;
 
     this.googleUser = user;
 
@@ -208,7 +219,7 @@ export class GoogleAuthService {
 
           console.log(response);
 
-          const user = new GoogleBasicProfile();
+          // const user = new GoogleBasicProfile();
           // if (response && response.code) {
           //   user.authorizationCode = response.code;
           // } else {
@@ -245,6 +256,24 @@ export class GoogleAuthService {
         .catch((err) => {
           reject(err);
         });
+    });
+  }
+
+
+  refreshAuthToken() {
+
+    return new Promise((resolve, reject) => {
+
+      this.auth2.reloadAuthResponse().then((response) => {
+        this.setUserProfile();
+        console.log(this.googleUser);
+
+        resolve(true);
+
+      }).catch((err) => {
+        reject(err);
+      });
+
     });
   }
 
