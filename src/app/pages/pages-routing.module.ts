@@ -1,17 +1,17 @@
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivateChild } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import { AuthGuard } from '../@core/guard/auth.guard';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
-  canActivate: [AuthGuard],
   children: [
     {
       path: 'dashboard',
+      canActivateChild: [AuthGuard],
       loadChildren: () => import('./dashboard/dashboard.module')
         .then(m => m.DashboardModule)
     },
@@ -26,7 +26,13 @@ const routes: Routes = [{
       pathMatch: 'full',
     },
     {
+      path: 'test',
+      canActivate: [AuthGuard],
+      component: NotFoundComponent,
+    },
+    {
       path: '**',
+      canActivate: [AuthGuard],
       component: NotFoundComponent,
     },
   ],
@@ -34,7 +40,7 @@ const routes: Routes = [{
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class PagesRoutingModule {
 }

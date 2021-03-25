@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../@core/services/account.service';
-import { AuthService } from '../../@core/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   templateUrl: './logout.component.html',

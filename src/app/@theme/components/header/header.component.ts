@@ -1,15 +1,12 @@
-import { SocialUser } from 'angularx-social-login';
-import { StateService } from './../../../@core/utils/state.service';
+import { GoogleBasicProfile } from './../../../modules/google-login/model/google-basic-profile';
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
-import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { RippleService } from '../../../@core/utils/ripple.service';
-import { AccountService } from '../../../@core/services/account.service';
-import { AuthService } from '../../../@core/services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'ngx-header',
@@ -22,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public readonly materialTheme$: Observable<boolean>;
   userPictureOnly: boolean = false;
   sidebarEl: ElementRef;
-  user: SocialUser;
+  user: GoogleBasicProfile;
   isMobile: boolean = false;
 
   themes = [
@@ -61,11 +58,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
-    private userService: UserData,
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
-    private accountService: AccountService,
     private authService: AuthService,
   ) {
     this.materialTheme$ = this.themeService.onThemeChange()
@@ -92,7 +87,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     // this.user = this.accountService.user;
 
-    this.user = this.authService.getTokenCookie();
+
+    this.user = this.authService.getCurrentUser();
+
 
     // console.log(this.user);
     // this.userService.getUsers()

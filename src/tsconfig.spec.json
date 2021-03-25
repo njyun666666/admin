@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "types": [
       "jasmine",
-      "node"
+      "node",
+      "gapi.auth2"
     ]
   },
   "files": [

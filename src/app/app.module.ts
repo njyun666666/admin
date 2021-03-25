@@ -20,7 +20,12 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { GoogleLoginModule } from './modules/google-login/google-login.module';
+
+
+
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,24 +45,9 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    SocialLoginModule
+    GoogleLoginModule
   ],
-  providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: true,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '1065892758091-10ttsbo9032vc1nr45sbg7i5aqeb48rf.apps.googleusercontent.com' // 於 google 申請的應用程式 client id
-            )
-          }
-        ]
-      } as SocialAuthServiceConfig
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {

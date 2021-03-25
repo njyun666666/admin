@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialUser } from 'angularx-social-login';
-import { AuthService } from '../../@core/services/auth.service';
+import { AuthService } from '../../services/auth.service';
+import { GoogleSignInOptions } from '../../modules/google-login/model/google-sign-in-options';
 
 
 @Component({
@@ -10,9 +10,7 @@ import { AuthService } from '../../@core/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  user: SocialUser;
-  loggedIn: boolean;
-
+  signinOpt: GoogleSignInOptions = new GoogleSignInOptions();
 
   constructor(
     private authService: AuthService
@@ -21,12 +19,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.login();
-
   }
 
   signInWithGoogle(): void {
-    this.authService.signInWithGoogle();
+
+    this.signinOpt.prompt = 'select_account';
+    this.signinOpt.redirect_uri = '/';
+
+    this.authService.login(this.signinOpt);
   }
 
 

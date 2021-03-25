@@ -1,9 +1,9 @@
+
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SocialUser } from 'angularx-social-login';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { GoogleAuthService } from '../modules/google-login/google-auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private cookieService: CookieService,
+    private googleAuthService: GoogleAuthService
   ) { }
 
   get(url: string, optionParams?: { [param: string]: any }, optionHeader?: { [header: string]: string })
@@ -50,7 +50,6 @@ export class ApiService {
       // withCredentials: true // set cookies
     };
 
-
     return this.http.post(url, optionParams, httpOptions)
       .pipe(catchError(this.handleError));
   }
@@ -67,13 +66,14 @@ export class ApiService {
     } else {
       //  The backend returned an unsuccessful response code.
       //  The response body may contain clues as to what went wrong,
+      console.error(error);
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was:\n${error.error}`);
     }
 
+    // alert(`Backend returned code ${error.status}`);
 
-    alert(`Backend returned code ${error.status}`);
     //  return an observable with a user-facing error message
     return throwError(
       `Backend returned code ${error.status}`);
@@ -84,9 +84,9 @@ export class ApiService {
 
   private setHeader(headers: HttpHeaders): HttpHeaders {
 
-    if (this.cookieService.check('token')) {
-      const token = JSON.parse(this.cookieService.get('token')) as SocialUser;
-      headers = headers.append('Token', token.idToken);
+    if (this.googleAuthService.googleUser) {
+      const token = this.googleAuthService.googleUser.id_token;
+      headers = headers.append('Token', token);
     }
 
     return headers;

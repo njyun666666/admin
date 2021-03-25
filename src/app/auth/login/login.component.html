@@ -1,10 +1,11 @@
 <p>login works!</p>
-
+<!-- 
 <div *ngIf="!user">
-    <button (click)="signInWithGoogle()"><span>google</span></button>
-</div>
+</div> -->
+<div id="my-signin2"></div>
 
-<div *ngIf="user">
+<button (click)="signInWithGoogle()"><span>google</span></button>
+<!-- <div *ngIf="user">
     <img *ngIf="user.photoUrl" src="{{ user.photoUrl }}">
     <div>
         <h4>{{ user.name }}</h4>
@@ -12,8 +13,10 @@
     </div>
     <button (click)="signOut()">Sign out</button>
 </div>
-
+ -->
 
 <div>
     <a [routerLink]="['/']">home</a>
 </div>
+
+
