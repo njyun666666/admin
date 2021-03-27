@@ -1,4 +1,3 @@
-import { SocialUser } from 'angularx-social-login';
 import { of as observableOf, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Contacts, RecentUsers, UserData } from '../data/users';
@@ -7,7 +6,7 @@ import { Contacts, RecentUsers, UserData } from '../data/users';
 export class UserService extends UserData {
 
 
-  public user: SocialUser;
+  // public user: SocialUser;
 
   private time: Date = new Date;
 
@@ -44,14 +43,14 @@ export class UserService extends UserData {
   ];
 
 
-  getUser(): Observable<any> {
-    return observableOf(this.user);
-  }
+  // getUser(): Observable<any> {
+  //   return observableOf(this.user);
+  // }
 
-  setUser(user: SocialUser) {
-    this.user = user;
-    console.log('userService', this.user);
-  }
+  // setUser(user: SocialUser) {
+  //   this.user = user;
+  //   console.log('userService', this.user);
+  // }
 
   getUsers(): Observable<any> {
     return observableOf(this.users);

@@ -1,22 +1,35 @@
-<p>login works!</p>
-<!-- 
-<div *ngIf="!user">
-</div> -->
-<div id="my-signin2"></div>
+<div class="row justify-content-md-center align-items-lg-center" id="login-main">
+  <div class="col-12 col-lg-6 col-xl-5 " id="login-left">
 
-<button (click)="signInWithGoogle()"><span>google</span></button>
-<!-- <div *ngIf="user">
-    <img *ngIf="user.photoUrl" src="{{ user.photoUrl }}">
-    <div>
-        <h4>{{ user.name }}</h4>
-        <p>{{ user.email }}</p>
+    <div class="row">
+      <div class="col text-center text-lg-left">
+        <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" id="login-logo">
+      </div>
     </div>
-    <button (click)="signOut()">Sign out</button>
-</div>
- -->
 
-<div>
+    <div class="row">
+      <div class="col text-center text-lg-left" id="login-text">
+
+          Facebook，讓你和親朋好友保持聯繫，隨時分享生活中的每一刻。<br>
+          Facebook，讓你和親朋好友保持聯繫，隨時分享生活中的每一刻。<br>
+          Facebook，讓你和親朋好友保持聯繫，隨時分享生活中的每一刻。<br>
+          Facebook，讓你和親朋好友保持聯繫，隨時分享生活中的每一刻。<br>
+          Facebook，讓你和親朋好友保持聯繫，隨時分享生活中的每一刻。<br>
+          Facebook，讓你和親朋好友保持聯繫，隨時分享生活中的每一刻。<br>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="col-12 col-lg-3 col-xl-2 text-center" id="login-right">
+    <button mat-fab color="basic" (click)="signInWithGoogle()" id="login-btn">
+      <img src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png">
+    </button>
+  </div>
+</div>
+
+
+
+<!-- <div>
     <a [routerLink]="['/']">home</a>
-</div>
-
-
+</div> -->
