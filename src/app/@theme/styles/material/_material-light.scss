@@ -8,6 +8,21 @@
 @import '~@nebular/theme/styles/core/mixins';
 
 $theme: (
+
+  my-color-main:#FFE100,
+  my-color-2nd:#231815,
+
+  my-header-background:my-color-main,
+  my-header-text:my-color-2nd,
+
+  my-sidebar-background:my-color-2nd,
+  my-sidebar-text:my-color-2nd,
+
+  my-menu-text-color: rgba(255, 255, 255, 0.75),
+  my-menu-item-hover-background-color: rgba(255, 255, 255, 0.04),
+  my-menu-item-active-background-color: rgba(255, 255, 255, 0.08),
+
+
   color-primary-100: #e8cbfe,
   color-primary-200: #ce97fd,
   color-primary-300: #ae63f9,
@@ -374,7 +389,7 @@ $theme: (
   header-text-color: text-alternate-color,
   footer-text-color: text-alternate-color,
   footer-text-highlight-color: footer-text-color,
-  sidebar-background-color: background-basic-color-2,
+  sidebar-background-color: my-sidebar-background,
 
   menu-text-font-weight: 400,
   menu-text-color: rgba(0, 0, 0, 0.87),

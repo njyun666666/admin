@@ -14,13 +14,484 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'IoT Dashboard',
-    icon: 'home-outline',
-    link: '/pages/iot-dashboard',
-  },
-  {
     title: 'FEATURES',
     group: true,
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
+  },
+  {
+    title: 'Miscellaneous',
+    icon: 'shuffle-2-outline',
+    children: [
+      {
+        title: '404',
+        link: '/pages/miscellaneous/404',
+      },
+      {
+        title: 'test',
+        link: '/pages/Test',
+      },
+    ],
   },
   {
     title: 'Miscellaneous',

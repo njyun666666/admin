@@ -31,7 +31,7 @@ export class GoogleAuthService {
     gapi.load('auth2', () => {
       // console.log('gapi.load auth2');
       this.auth2 = gapi.auth2.init({
-        client_id: '1065892758091-10ttsbo9032vc1nr45sbg7i5aqeb48rf.apps.googleusercontent.com',
+        client_id: '897146716479-jgg5kmfqgcauk10s0s244n989jq9jvn7.apps.googleusercontent.com',
         scope: 'profile'
       });
 
