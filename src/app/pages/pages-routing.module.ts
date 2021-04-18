@@ -15,6 +15,8 @@ const routes: Routes = [{
       loadChildren: () => import('./dashboard/dashboard.module')
         .then(m => m.DashboardModule)
     },
+    { path: 'formTry', loadChildren: () => import('./form-try/form-try.module').then(m => m.FormTryModule) },
+
     {
       path: 'miscellaneous',
       loadChildren: () => import('./miscellaneous/miscellaneous.module')

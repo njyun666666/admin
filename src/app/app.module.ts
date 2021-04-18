@@ -26,7 +26,6 @@ import { GoogleLoginModule } from './modules/google-login/google-login.module';
 
 
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
