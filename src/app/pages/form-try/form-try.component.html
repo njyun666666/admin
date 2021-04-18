@@ -25,7 +25,12 @@
   <br>
 
 
-
+  <mat-form-field>
+    <input matInput [ngxMatDatetimePicker]="picker_dt1" placeholder="Choose a date" formControlName="dt1">
+    <mat-datepicker-toggle matSuffix [for]="picker_dt1"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker_dt1  showSeconds="true" >
+    </ngx-mat-datetime-picker>
+ </mat-form-field>
 
   <br>
 
