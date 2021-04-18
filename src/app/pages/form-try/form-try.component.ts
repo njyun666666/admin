@@ -11,6 +11,9 @@ export class FormTryComponent implements OnInit {
 
   form;
 
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+
   constructor(
     private fb: FormBuilder
   ) { }
@@ -21,8 +24,16 @@ export class FormTryComponent implements OnInit {
       {
         d1: this.fb.control(null),
         dt1: this.fb.control(null),
+        toppings: this.fb.control([
+          "Extra cheese",
+          "Mushroom",
+          "Onion"
+        ]),
+        depts: this.fb.control('deptsssssssss')
       }
     );
+
+    // console.log(this.form.get('depts'));
 
   }
 

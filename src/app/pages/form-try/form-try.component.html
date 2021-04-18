@@ -28,16 +28,42 @@
   <mat-form-field>
     <input matInput [ngxMatDatetimePicker]="picker_dt1" placeholder="Choose a date" formControlName="dt1">
     <mat-datepicker-toggle matSuffix [for]="picker_dt1"></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #picker_dt1  showSeconds="true" >
+    <ngx-mat-datetime-picker #picker_dt1 showSeconds="true">
     </ngx-mat-datetime-picker>
- </mat-form-field>
+  </mat-form-field>
 
   <br>
 
   <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
 
+
+  <br>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Toppings</mat-label>
+    <mat-select formControlName="toppings" multiple >
+
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>姓名</mat-label>
+        <input matInput placeholder="姓名" value="Sushi">
+      </mat-form-field>
+
+      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <br>
+
+  <ngx-org-picker testiiii="depts" [orgControl]="form.get('depts')"></ngx-org-picker>
+
+  <br>
+  <input type="text" formControlName="depts">
+
+
 </form>
 
+<br><br>
 
 <pre>
 {{form.value|json}}
