@@ -2,14 +2,24 @@ export class OrgModel {
 }
 
 
+
 export interface DeptModel {
-  DeptID: string;
-  DeptName: string;
+  deptID: string;
+  deptName: string;
 }
 
-export interface UserModel {
-  UserID: string;
-  UserName: string;
-  DeptID?: string;
-  DeptName?: string;
+
+export interface ResultUserModel {
+  code: number;
+  data?: UserModel[];
 }
+
+
+export interface UserModel {
+  userID: string;
+  userName: string;
+  deptID?: string;
+  deptName?: string;
+}
+
+

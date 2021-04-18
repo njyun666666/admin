@@ -29,7 +29,7 @@ export class FormTryComponent implements OnInit {
           "Mushroom",
           "Onion"
         ]),
-        depts: this.fb.control('deptsssssssss')
+        depts: this.fb.control(null)
       }
     );
 

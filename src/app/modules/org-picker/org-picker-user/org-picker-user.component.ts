@@ -1,4 +1,4 @@
-import { UserModel } from './../org-model';
+import { ResultUserModel, UserModel } from './../org-model';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -10,24 +10,39 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class OrgPickerUserComponent implements OnInit {
 
 
+  oldData: UserModel[];
+
+  result: ResultUserModel;
 
   constructor(
     public dialogRef: MatDialogRef<OrgPickerUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserModel[]) { }
 
+
+
   ngOnInit(): void {
     console.log(this.data);
 
+    this.oldData = this.data;
+
+    this.result.code = 0;
+    this.result.data = this.data;
+
     this.data = [
       {
-        UserID: 'u1',
-        UserName: 'u name',
+        userID: 'u1',
+        userName: 'u name',
       }
     ]
 
 
   }
 
+
+  onOkClick(): void {
+    this.result.code = 1;
+    this.dialogRef.close(this.result);
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

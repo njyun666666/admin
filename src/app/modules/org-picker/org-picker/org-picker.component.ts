@@ -47,8 +47,11 @@ export class OrgPickerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      console.log('The dialog was closed',result);
-      this.orgControl.setValue(result);
+      console.log('The dialog was closed', result);
+
+      if (result.code === 1) {
+        this.orgControl.setValue(result);
+      }
       // this.animal = result;
     });
   }
