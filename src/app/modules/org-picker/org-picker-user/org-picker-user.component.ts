@@ -25,6 +25,7 @@ export class OrgPickerUserComponent implements OnInit {
 
     this.oldData = this.data;
 
+
     this.result.code = 0;
     this.result.data = this.data;
 
