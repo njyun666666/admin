@@ -37,10 +37,21 @@
   @include nb-overrides();
   @include material-overrides();
 
-
-
   // custom
-  .header-container .logo-container .logo{
+  $my-color-main: #ffe100;
+  $my-color-2nd: #231815;
+
+  $my-header-background: $my-color-main;
+  $my-header-text: $my-color-2nd;
+
+  $my-sidebar-background: $my-color-2nd;
+  $my-sidebar-text: $my-color-2nd;
+
+  $my-menu-text-color: rgba(255, 255, 255, 0.75);
+  $my-menu-item-hover-background-color: rgba(255, 255, 255, 0.04);
+  $my-menu-item-active-background-color: rgba(255, 255, 255, 0.08);
+
+  .header-container .logo-container .logo {
     border-left: 0 !important;
   }
 
@@ -54,6 +65,92 @@
   }
 
 
+  nb-layout-header {
+    background-color: $my-header-background !important;
+    // background-color: $my-header-background !important;
+
+    nav {
+      color: $my-header-text !important;
+      a {
+        color: $my-header-text !important;
+      }
+    }
+
+    nb-actions,
+    .logo-container {
+      nb-icon,
+      .user-name {
+        color: $my-header-text !important;
+      }
+    }
+
+    nb-action {
+      border-left-color: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    nb-user .user-picture {
+      border: 0 !important;
+    }
+
+    .select-button {
+      background-color: nb-theme(background-basic-color-3) !important;
+    }
+  }
+
+  nb-sidebar {
+    background-color: $my-sidebar-background;
+    transition: width 0.1s;
+
+    .scrollable::-webkit-scrollbar-track {
+      background: $my-sidebar-background !important;
+    }
+
+    .scrollable::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    nb-menu {
+      .menu-item {
+        border-bottom: 1px solid $my-sidebar-background !important;
+
+        a {
+          color: $my-menu-text-color !important;
+          .menu-icon {
+            color: $my-menu-text-color !important;
+          }
+        }
+        a:hover {
+          background-color: $my-menu-item-hover-background-color !important;
+        }
+        a.active {
+          color: $my-color-main !important;
+          background-color: $my-menu-item-active-background-color !important;
+          .menu-icon {
+            color: $my-color-main !important;
+          }
+        }
+
+        .menu-item:first-child {
+          border-top: 1px solid $my-sidebar-background !important;
+        }
+
+        .expand-state {
+          color: $my-menu-text-color !important;
+        }
+      }
+    }
+
+    .main-container {
+      transition: width 0.1s;
+    }
+  }
+
+  nb-sidebar.compacted {
+    nb-menu .menu-item a.active::before {
+      background: $my-color-main !important;
+    }
+  }
+
 
 
   @include media-breakpoint-down(is) {
@@ -61,5 +158,4 @@
       margin-left: 0;
     }
   }
-
 }
